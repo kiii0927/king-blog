@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.king.sys.mapper.BarrageMapper">
+
+    <resultMap id="BaseResultMap" type="com.king.sys.bean.entity.system.Barrage">
+            <id property="barrageNo" column="barrage_no" jdbcType="INTEGER"/>
+            <result property="adminComment" column="admin_comment" jdbcType="INTEGER"/>
+            <result property="formId" column="form_id" jdbcType="VARCHAR"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="replyUsername" column="reply_username" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="message" column="message" jdbcType="VARCHAR"/>
+            <result property="commentId" column="comment_id" jdbcType="INTEGER"/>
+            <result property="parentCommentId" column="parent_comment_id" jdbcType="INTEGER"/>
+            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        barrage_no,admin_comment,form_id,
+        deleted,username,reply_username,
+        email,avatar,message,province,
+        city,comment_id,parent_comment_id,
+        create_time
+    </sql>
+
+    <select id="findLastInsertId" resultType="java.lang.Integer">
+        SELECT MAX(barrage_no) FROM `t_barrage`;
+    </select>
+
+    <select id="selectMyList" resultType="barrage">
+        select <include refid="Base_Column_List"></include>
+        from `t_barrage` ${ew.customSqlSegment}
+    </select>
+
+    <select id="findTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*) AS total FROM t_barrage WHERE deleted = 0
+    </select>
+
+</mapper>

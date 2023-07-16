@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.king.sys.mapper.UserFavorMapper">
+
+    <update id="delById">
+        update `t_user_favor` set `deleted` = 1 where `id` = #{id};
+    </update>
+
+    <update id="updateDeletedById">
+        update `t_user_favor` set `deleted` = 0 where `id` = #{id};
+    </update>
+
+    <select id="findAllByIdentify" resultType="com.king.sys.bean.vo.FavorVo">
+        select  b.`id`, f.`identify`, b.`title`, b.`first_picture`, c.`name`, f.`create_time`
+        from (`t_blog` as b join `t_classify` as c on b.`c_id` = c.`id`)
+                 join `t_user_favor` as f on b.`id` = f.`b_id` and f.`identify` = #{identify} and f.`deleted` = 0 order by f.`create_time` desc;
+    </select>
+
+    <select id="selectOne" resultType="com.king.sys.bean.entity.system.UserFavor">
+        SELECT * FROM `t_user_favor` WHERE `b_id` = #{b_id} AND `identify` = #{identify}
+    </select>
+
+</mapper>

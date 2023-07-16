@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.king.sys.mapper.BlogMapper">
+
+    <select id="selectListPage" resultType="com.king.sys.bean.vo.BlogVo">
+        select  b.`id`, c.`name`, b.`first_picture`, b.`comments`, b.`views` , b.`create_time`, b.`description`, b.`type`, b.`title`
+            from `t_blog` as `b`, `t_classify` as c where b.`is_draft` = 0 and b.`c_id` = c.`id` order by b.`create_time` desc limit #{currentPage},#{size}
+    </select>
+
+    <select id="selectBlogById" resultType="com.king.sys.bean.vo.BlogVo">
+        select  b.`id`, c.`name`, b.`first_picture`, b.`content`, b.`views`, b.`comments`, b.`is_comment`, b.`create_time`, b.`description`, b.`type`, b.`title`
+            from `t_blog` as `b`, `t_classify` as c where b.c_id = c.id and b.id = #{id};
+    </select>
+
+    <select id="selectViewsCount" resultType="java.lang.Integer">
+        SELECT SUM(views) FROM `t_blog` WHERE `is_draft` = 0;
+    </select>
+
+    <select id="selectCommentsCount" resultType="java.lang.Integer">
+        SELECT SUM(comments) FROM `t_blog` WHERE `is_draft` = 0;
+    </select>
+
+    <select id="selectBlogCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `t_blog` WHERE `is_draft` = 0;
+    </select>
+
+    <select id="findBlogData" resultType="java.util.Map">
+        SELECT SUM(views) AS viewsCount, SUM(comments) AS commentCount, COUNT(*) AS blogCount FROM `t_blog` WHERE `is_draft` = 0;
+    </select>
+</mapper>

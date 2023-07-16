@@ -1,0 +1,120 @@
+{
+  "groups": [
+    {
+      "name": "oauth.qq",
+      "type": "me.zhyd.oauth.request.AuthQqRequest",
+      "sourceType": "me.zhyd.oauth.config.AuthConfig"
+    },
+    {
+      "name": "oauth.github",
+      "type": "me.zhyd.oauth.request.AuthGithubRequest",
+      "sourceType": "me.zhyd.oauth.config.AuthConfig"
+    },
+    {
+      "name": "oauth.gitee",
+      "type": "me.zhyd.oauth.request.AuthGiteeRequest",
+      "sourceType": "me.zhyd.oauth.config.AuthConfig"
+    },
+    {
+      "name": "oauth.wb",
+      "type": "me.zhyd.oauth.request.AuthWeiboRequest",
+      "sourceType": "me.zhyd.oauth.config.AuthConfig"
+    },
+    {
+      "name": "oauth.baidu",
+      "type": "me.zhyd.oauth.request.AuthBaiduRequest",
+      "sourceType": "me.zhyd.oauth.config.AuthConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "oauth.qq.client-id",
+      "type": "java.lang.String",
+      "description": "qq第三方登录的client-id.",
+      "defaultValue": null
+    },
+    {
+      "name": "oauth.qq.client-secret",
+      "type": "java.lang.String",
+      "description": "qq第三方登录的client-secret",
+      "defaultValue": null
+    },
+    {
+      "name": "oauth.qq.redirect-uri",
+      "type": "java.lang.String",
+      "description": "第三方登录重定向url",
+      "defaultValue": "http://localhost:2306/oauth/callback/qq"
+    },
+    {
+      "name": "oauth.github.client-id",
+      "type": "java.lang.String",
+      "description": "github第三方登录的client-id.",
+      "defaultValue": "4cccb09e07ef27654b29"
+    },
+    {
+      "name": "oauth.github.client-secret",
+      "type": "java.lang.String",
+      "description": "github第三方登录的client-secret",
+      "defaultValue": "f8f254356ddd559570086b8867e28f06974e010f"
+    },
+    {
+      "name": "oauth.github.redirect-uri",
+      "type": "java.lang.String",
+      "description": "第三方登录重定向url",
+      "defaultValue": "http://localhost:2306/oauth/callback/github"
+    },
+    {
+      "name": "oauth.gitee.client-id",
+      "type": "java.lang.String",
+      "description": "gitee第三方登录的client-id.",
+      "defaultValue": "5621b9aed446c5054f98faa3bace37be7ccff9c58a7f696dc7d0199dd0feb94b"
+    },
+    {
+      "name": "oauth.gitee.client-secret",
+      "type": "java.lang.String",
+      "description": "gitee第三方登录的client-secret",
+      "defaultValue": "3b90a74d84a52ff2660db995f798186b506831070f4ffe6cd8d4865061d108c4"
+    },
+    {
+      "name": "oauth.gitee.redirect-uri",
+      "type": "java.lang.String",
+      "description": "第三方登录重定向url",
+      "defaultValue": "http://localhost:2306/oauth/callback/gitee"
+    },
+    {
+      "name": "oauth.wb.client-id",
+      "type": "java.lang.String",
+      "description": "微博第三方登录的client-id.",
+      "defaultValue": null
+    },
+    {
+      "name": "oauth.wb.client-secret",
+      "type": "java.lang.String",
+      "description": "微博第三方登录的client-secret",
+      "defaultValue": null
+    },
+    {
+      "name": "oauth.wb.redirect-uri",
+      "type": "java.lang.String",
+      "description": "第三方登录重定向url",
+      "defaultValue": "http://localhost:2306/oauth/callback/wb"
+    },
+    {
+      "name": "oauth.baidu.client-id",
+      "type": "java.lang.String",
+      "description": "百度第三方登录的client-id.",
+      "defaultValue": "HUT62EK0rMGDc6atFywPKjDs"
+    },
+    {
+      "name": "oauth.baidu.client-secret",
+      "type": "java.lang.String",
+      "description": "百度第三方登录的client-secret",
+      "defaultValue": "5WBtM6w2d47TEzR2lHrkcGNf7cGMTdoQ"
+    },
+    {
+      "name": "oauth.baidu.redirect-uri",
+      "type": "java.lang.String",
+      "description": "第三方登录重定向url",
+      "defaultValue": "http://localhost:2306/oauth/callback/baidu"
+    }
+] }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.king.sys.mapper.UserSysMessageMapper">
+
+    <resultMap id="BaseResultMap" type="UserSysMessage">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="uid" column="uid" jdbcType="INTEGER"/>
+            <result property="sysId" column="sys_id" jdbcType="INTEGER"/>
+            <result property="isRead" column="is_read" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,uid,sys_id,
+        is_read,create_time
+    </sql>
+
+    <update id="updateIsReadAndSysId">
+        update `user_sys_message` set is_read = 1 where sys_id = #{sid} and uid = #{uid}
+    </update>
+
+
+    <select id="selectMyList" resultType="java.lang.String">
+        select `sys_id` from `user_sys_message` ${ew.customSqlSegment} limit  #{offset},20
+    </select>
+
+</mapper>

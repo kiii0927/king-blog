@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.king.sys.mapper.UserMessageMapper">
+
+    <resultMap id="BaseResultMap" type="userMessage">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <id property="identify" column="key" jdbcType="VARCHAR"/>
+            <result property="topic" column="topic" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="formId" column="form_id" jdbcType="VARCHAR"/>
+            <result property="toId" column="to_id" jdbcType="VARCHAR"/>
+            <result property="source" column="source" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="msgType" column="msg_type" jdbcType="TINYINT"/>
+            <result property="isRead" column="is_read" jdbcType="TINYINT"/>
+            <result property="opeTime" column="ope_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,`key`,topic,
+        content,form_id,to_id,
+        `source`,create_time,msg_type,
+        is_read,ope_time
+    </sql>
+
+    <select id="selectMyList" resultType="userMessage" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include>
+        from `user_message` ${ew.customSqlSegment} limit 20
+    </select>
+
+</mapper>

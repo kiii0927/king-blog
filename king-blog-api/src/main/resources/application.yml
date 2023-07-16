@@ -1,0 +1,71 @@
+server:
+  port: 2306
+  tomcat:
+    threads:
+      max: 200
+
+# todo 测试logback生成的sys-user，需要把spring.application.name定义在各个环境当中.
+#  Spring Config
+spring:
+  application:
+    name: 'king-blog'
+  profiles:
+    active: dev
+  mvc:
+    static-path-pattern: /static/**
+  # time zone config
+  jackson:
+    time-zone: GMT+8
+  # bean lazy
+  main:
+    lazy-initialization: true
+  # task config
+  task:
+    execution:
+      pool:
+        core-size: 6
+        max-size: 50
+        queue-capacity: 200
+      thread-name-prefix: king-
+
+# mybatis-plus config
+mybatis-plus:
+  # global config
+  global-config:
+    db-config:
+      logic-delete-field: deleted # 全局逻辑删除的实体字段名，也可实体类字段上加上@TableLogic注解
+      logic-delete-value: 1 # 逻辑已删除值
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  configuration:
+    #    map-underscore-to-camel-case: false # 关闭驼峰命名, 字段是用下划线命名的, mybatis-plus默认开启驼峰命名的
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+    cache-enabled: true
+  type-aliases-package: com.king.sys.bean.entity
+#  type-enums-package: com.king.sys.bean.enums # 从 3.5.2 开始无需配置
+
+# log config
+logging:
+  config: classpath:logback-${spring.profiles.active}.xml
+
+#oauth config
+oauth:
+  qq:
+    client-id:
+    client-secret:
+    redirect-uri: http://localhost:2306/oauth/callback/qq
+  github:
+    client-id: 4cccb09e07ef27654b29
+    client-secret: f8f254356ddd559570086b8867e28f06974e010f
+    redirect-uri: http://localhost:2306/oauth/callback/github
+  gitee:
+    client-id: 5621b9aed446c5054f98faa3bace37be7ccff9c58a7f696dc7d0199dd0feb94b
+    client-secret: 3b90a74d84a52ff2660db995f798186b506831070f4ffe6cd8d4865061d108c4
+    redirect-uri: http://localhost:2306/oauth/callback/gitee
+  wb:
+    client-id:
+    client-secret:
+    redirect-uri: http://localhost:2306/oauth/callback/wb
+  baidu:
+    client-id: HUT62EK0rMGDc6atFywPKjDs
+    client-secret: 5WBtM6w2d47TEzR2lHrkcGNf7cGMTdoQ
+    redirect-uri: http://localhost:3015/oauth/callback/baidu
