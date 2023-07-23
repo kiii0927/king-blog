@@ -31,9 +31,6 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    //@Autowired
-    //private IValidationService validationService;
-
     /**
      * 发送人
      */

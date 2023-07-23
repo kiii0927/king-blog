@@ -1,7 +1,9 @@
 package com.king.common.utils;
 
 import com.google.common.base.Strings;
+import org.springframework.lang.Nullable;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -84,4 +86,17 @@ public final class ToolUtil {
         byte[] bytes = target.getBytes(StandardCharsets.UTF_8);
         return encoder.encodeToString(bytes);
     }
+
+    /**
+     * 获取用户请求的唯一标识
+     * @param request
+     * @param target
+     * @return 用户请求唯一标识
+     */
+    @Nullable
+    public static String getIdentify(HttpServletRequest request, String target){
+        String name = target == null ? "identify" : target;
+        return request.getHeader(name);
+    }
+
 }

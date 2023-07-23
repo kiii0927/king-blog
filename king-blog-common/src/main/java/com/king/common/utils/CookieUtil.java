@@ -40,12 +40,16 @@ public final class CookieUtil {
         }
         AtomicReference<String> s = new AtomicReference<>(null);
 
-        Cookie[] cookies = Optional.ofNullable(request.getCookies())
-                .orElseThrow(() -> {
-                    log.error("cookies be null. request jwt undefined.");
-                    return new RequestException("请求失败");
-                });
-        Objects.requireNonNull(cookies, "cookies be null");
+        //Cookie[] cookies = request.getCookies();Optional.ofNullable(request.getCookies())
+        //        .orElseThrow(() -> {
+        //            log.error("cookies be null. request jwt undefined.");
+        //            return new RequestException("请求失败");
+        //        });
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return null;
+        }
+        //Objects.requireNonNull(cookies, "cookies be null");
         Arrays.stream(cookies).forEach(cookie -> {
             if (name.equals(cookie.getName())) {
                 s.set(cookie.getValue());

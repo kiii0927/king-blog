@@ -1,15 +1,11 @@
 package com.king.core.config;
 
 import com.king.common.module.constant.Constant;
-import com.king.core.web.interceptor.LoginTicketInterceptor;
-import lombok.SneakyThrows;
+import com.king.core.web.interceptor.RequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
 /**
  * web config
@@ -20,6 +16,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  **/
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+    /**
+     * 所有请求都允许跨域
+     */
+    @Override
+    public void addCorsMappings(CorsRegistry corsRegistry){
+        corsRegistry.addMapping("/**")
+                .allowCredentials(true)
+                .allowedOriginPatterns("http://localhost:9027", "http://39.101.75.221:9027")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*")
+                .maxAge(3600);
+    }
 
     /**
      * 配置静态资源访问路径
@@ -42,7 +51,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public HandlerInterceptor getLoginTicketInterceptor(){
-        return new LoginTicketInterceptor();
+        return new RequestInterceptor();
     }
 
 }
